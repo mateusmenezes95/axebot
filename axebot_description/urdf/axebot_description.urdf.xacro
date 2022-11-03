@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="axebot" params="prefix">
+    
+        <!-- Constants for robot dimensions -->
+        <xacro:property name="PI" value="3.1415926535897931"/>
+        <xacro:property name="base_mass" value="1.551" />
+        <xacro:property name="base_radius" value="0.1" />
+        <xacro:property name="base_height" value="0.02" />
+        <xacro:property name="wheel_mass" value="0.3" />
+        <xacro:property name="wheel_len" value="0.005" />
+        <xacro:property name="wheel_radius" value="0.015" />
+        <xacro:property name="z_offset" value="-${base_height/2}" />
+
+        <link name="${prefix}base_link">
+            <visual name="">
+                <origin xyz="0.0 0.0 ${base_height/2 + wheel_radius/2}" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="${base_radius}" length="${base_height}"/>
+                </geometry>
+                <material name="orange"/>
+            </visual>
+        </link>
+
+        <joint name="${prefix}wheel1_joint" type="continuous">
+            <origin xyz="-${base_radius} 0.0 ${wheel_radius/2}" rpy="0.0 -${PI/2} 0.0"/>
+            <parent link="${prefix}base_link"/>
+            <child link="${prefix}wheel1_link"/>
+            <axis xyz="0.0 0.0 1.0"/>
+        </joint>
+
+        <link name="${prefix}wheel1_link">
+            <visual>
+                <origin xyz="0.0 0.0 ${wheel_len/2}" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="${wheel_radius}" length="${wheel_len}"/>
+                </geometry>
+            </visual>    
+        </link>
+    </xacro:macro>
+</robot>
