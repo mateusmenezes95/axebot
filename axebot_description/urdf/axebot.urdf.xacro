@@ -7,14 +7,14 @@
     <xacro:property name="robot_height" value="0.053"/>
     <xacro:property name="wheel_mass" value="0.268" />
     <xacro:property name="wheel_radius" value="0.05" />
-    <xacro:property name="wheel_shaft_radius" value="0.005" />
+    <xacro:property name="motor_shaft_radius" value="0.005" />
     <xacro:property name="shaft_mass" value="0.01" />
 
     <!-- The sum of the base radius, half of wheel thickness, and the shat
     length must be equal the robot radius L = 0.1 m used in the kinematic model -->
     <xacro:property name="base_radius" value="0.085"/>
     <xacro:property name="wheel_thickness" value="0.025" />
-    <xacro:property name="shaft_length" value="0.0025"/>
+    <xacro:property name="motor_shaft_length" value="0.0025"/>
 
     <xacro:include filename="$(find axebot_description)/urdf/wheel.urdf.xacro"/>
     <xacro:include filename="$(find axebot_description)/urdf/materials.urdf.xacro"/>

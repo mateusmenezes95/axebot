@@ -18,31 +18,31 @@
         <joint name="wheel${suffix}_shaft_joint" type="fixed">
             <origin xyz="${base_radius*cos(theta)} ${base_radius*sin(theta)} ${robot_height}" rpy="0.0 ${PI/2} ${theta+PI}"/>
             <parent link="${parent}"/>
-            <child link="wheel${suffix}_shaft_link"/>
+            <child link="motor${suffix}_shaft_link"/>
         </joint>
 
-        <link name="wheel${suffix}_shaft_link">
+        <link name="motor${suffix}_shaft_link">
             <visual>
-                <origin xyz="0.0 0.0 -${shaft_length/2}" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 -${motor_shaft_length/2}" rpy="0.0 0.0 0.0"/>
                 <geometry>
-                    <cylinder radius="${wheel_shaft_radius}" length="${shaft_length}"/>
+                    <cylinder radius="${motor_shaft_radius}" length="${motor_shaft_length}"/>
                 </geometry>
                 <material name="grey"/>
             </visual>
             <collision>
-                <origin xyz="0.0 0.0 -${shaft_length/2}" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 -${motor_shaft_length/2}" rpy="0.0 0.0 0.0"/>
                 <geometry>
-                    <cylinder radius="${wheel_shaft_radius}" length="${shaft_length}"/>
+                    <cylinder radius="${motor_shaft_radius}" length="${motor_shaft_length}"/>
                 </geometry>
             </collision>
-            <xacro:inertial_cylinder mass="${shaft_mass}" radius="${wheel_shaft_radius}" length="${shaft_length}">
-                <origin xyz="0.0 0.0 -${shaft_length/2}" rpy="0.0 0.0 0.0"/>
+            <xacro:inertial_cylinder mass="${shaft_mass}" radius="${motor_shaft_radius}" length="${motor_shaft_length}">
+                <origin xyz="0.0 0.0 -${motor_shaft_length/2}" rpy="0.0 0.0 0.0"/>
             </xacro:inertial_cylinder>
         </link>
 
         <joint name="wheel${suffix}_joint" type="continuous">
-            <origin xyz="0.0 0.0 -${shaft_length}" rpy="0.0 0.0 0.0"/>
-            <parent link="wheel${suffix}_shaft_link"/>
+            <origin xyz="0.0 0.0 -${motor_shaft_length}" rpy="0.0 0.0 0.0"/>
+            <parent link="motor${suffix}_shaft_link"/>
             <child link="wheel${suffix}_link"/>
             <axis xyz="0.0 0.0 1.0"/>
         </joint>
