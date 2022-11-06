@@ -1,25 +1,47 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="inertial_cylinder" params="mass length radius *origin">
+        <inertial>
+            <xacro:insert_block name="origin"/>
+            <mass value="${mass}" />
+            <inertia 
+                ixx="${(1/12) * mass * (3*radius*radius + length*length)}"
+                ixy="0.0"
+                ixz="0.0"
+                iyy="${(1/12) * mass * (3*radius*radius + length*length)}"
+                iyz="0.0"
+                izz="${(1/2) * mass * (radius*radius)}" />
+            </inertial>
+    </xacro:macro>
+
     <xacro:macro name="wheel" params="prefix num theta">
         <joint name="${prefix}wheel${num}_shaft_joint" type="fixed">
             <origin xyz="${base_radius*cos(theta)} ${base_radius*sin(theta)} ${robot_height}" rpy="0.0 ${PI/2} ${theta+PI}"/>
             <parent link="${prefix}base_link"/>
             <child link="${prefix}wheel${num}_shaft_link"/>
-            <axis xyz="${base_radius} 0.0 0.0"/>
         </joint>
 
         <link name="${prefix}wheel${num}_shaft_link">
             <visual>
-                <origin xyz="0.0 0.0 -${distance_to_chassis/2}" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 -${shaft_length/2}" rpy="0.0 0.0 0.0"/>
                 <geometry>
-                    <cylinder radius="${wheel_shaft_radius}" length="${distance_to_chassis}"/>
+                    <cylinder radius="${wheel_shaft_radius}" length="${shaft_length}"/>
                 </geometry>
                 <material name="grey"/>
             </visual>
+            <collision>
+                <origin xyz="0.0 0.0 -${shaft_length/2}" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="${wheel_shaft_radius}" length="${shaft_length}"/>
+                </geometry>
+            </collision>
+            <xacro:inertial_cylinder mass="${shaft_mass}" radius="${wheel_shaft_radius}" length="${shaft_length}">
+                <origin xyz="0.0 0.0 -${shaft_length/2}" rpy="0.0 0.0 0.0"/>
+            </xacro:inertial_cylinder>
         </link>
 
         <joint name="${prefix}wheel${num}_joint" type="continuous">
-            <origin xyz="0.0 0.0 -${distance_to_chassis}" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 -${shaft_length}" rpy="0.0 0.0 0.0"/>
             <parent link="${prefix}wheel${num}_shaft_link"/>
             <child link="${prefix}wheel${num}_link"/>
             <axis xyz="0.0 0.0 1.0"/>
@@ -33,6 +55,15 @@
                 </geometry>
                 <material name="green"/>
             </visual>
+            <collision>
+                <origin xyz="0.0 0.0 -${wheel_thickness/2}" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
+                </geometry>
+            </collision>
+            <xacro:inertial_cylinder mass="${wheel_mass}" radius="${wheel_radius}" length="${wheel_thickness}">
+                <origin xyz="0.0 0.0 -${wheel_thickness/2}" rpy="0.0 0.0 0.0"/>
+            </xacro:inertial_cylinder>
         </link>
     </xacro:macro>
 </robot>
