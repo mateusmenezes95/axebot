@@ -16,6 +16,7 @@
     <xacro:property name="distance_to_chassis" value="0.0025"/>
 
     <xacro:include filename="$(find axebot_description)/urdf/axebot_wheels.urdf.xacro"/>
+    <xacro:include filename="$(find axebot_description)/urdf/axebot_materials.xacro"/>
 
     <xacro:macro name="axebot" params="prefix">
         <link name="${prefix}base_link">
@@ -24,7 +25,7 @@
                 <geometry>
                     <cylinder radius="${base_radius}" length="${base_height}"/>
                 </geometry>
-                <material name="orange"/>
+                <material name="black"/>
             </visual>
         </link>
 
