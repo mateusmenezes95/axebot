@@ -29,6 +29,7 @@
             </geometry>
             <material name="black"/>
         </visual>
+
         <collision>
             <origin xyz="0.0 0.0 ${robot_height}" rpy="0.0 0.0 0.0"/>
             <geometry>
@@ -36,6 +37,7 @@
             </geometry>
             <material name="black"/>
         </collision>
+
         <xacro:inertial_cylinder mass="${base_mass}" radius="${base_radius}" length="${base_height}">
             <origin xyz="0.0 0.0 ${robot_height}" rpy="0.0 0.0 0.0"/>
         </xacro:inertial_cylinder>

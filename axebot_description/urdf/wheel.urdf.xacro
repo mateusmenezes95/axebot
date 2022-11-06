@@ -29,6 +29,7 @@
                 </geometry>
                 <material name="grey"/>
             </visual>
+
             <collision>
                 <origin xyz="0.0 0.0 -${motor_shaft_length/2}" rpy="0.0 0.0 0.0"/>
                 <geometry>
@@ -55,12 +56,14 @@
                 </geometry>
                 <material name="green"/>
             </visual>
+
             <collision>
                 <origin xyz="0.0 0.0 -${wheel_thickness/2}" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
                 </geometry>
             </collision>
+
             <xacro:inertial_cylinder mass="${wheel_mass}" radius="${wheel_radius}" length="${wheel_thickness}">
                 <origin xyz="0.0 0.0 -${wheel_thickness/2}" rpy="0.0 0.0 0.0"/>
             </xacro:inertial_cylinder>
