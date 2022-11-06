@@ -1,6 +1,47 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="axebot">
+    <!-- Constants for wheel mechanical parameters -->
+    <xacro:property name="PI" value="3.1415926535897931"/>
+    <xacro:property name="base_mass" value="1.551"/>
+    <xacro:property name="base_height" value="0.04"/>
+    <xacro:property name="robot_height" value="0.053"/>
+    <xacro:property name="wheel_mass" value="0.268" />
+    <xacro:property name="wheel_radius" value="0.05" />
+    <xacro:property name="wheel_shaft_radius" value="0.005" />
+    <xacro:property name="shaft_mass" value="0.01" />
+
+    <!-- The sum of the base radius, half of wheel thickness, and the shat
+    length must be equal the robot radius L = 0.1 m used in the kinematic model -->
+    <xacro:property name="base_radius" value="0.085"/>
+    <xacro:property name="wheel_thickness" value="0.025" />
+    <xacro:property name="shaft_length" value="0.0025"/>
+
+    <xacro:include filename="$(find axebot_description)/urdf/wheel.urdf.xacro"/>
+    <xacro:include filename="$(find axebot_description)/urdf/materials.urdf.xacro"/>
+    
     <xacro:arg name="prefix" default=""/>
-    <xacro:include filename="$(find axebot_description)/urdf/axebot_description.urdf.xacro"/>
-    <xacro:axebot prefix="$(arg prefix)"/>
+
+    <link name="$(arg prefix)base_link">
+        <visual name="">
+            <origin xyz="0.0 0.0 ${robot_height}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${base_radius}" length="${base_height}"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 ${robot_height}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${base_radius}" length="${base_height}"/>
+            </geometry>
+            <material name="black"/>
+        </collision>
+        <xacro:inertial_cylinder mass="${base_mass}" radius="${base_radius}" length="${base_height}">
+            <origin xyz="0.0 0.0 ${robot_height}" rpy="0.0 0.0 0.0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <xacro:wheel prefix="$(arg prefix)" num="1" theta="${PI}"/>
+    <xacro:wheel prefix="$(arg prefix)" num="2" theta="-${PI/3}"/>
+    <xacro:wheel prefix="$(arg prefix)" num="3" theta="${PI/3}"/>
 </robot>
