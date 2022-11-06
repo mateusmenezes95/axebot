@@ -41,7 +41,7 @@
         </xacro:inertial_cylinder>
     </link>
 
-    <xacro:wheel prefix="$(arg prefix)" num="1" theta="${PI}"/>
-    <xacro:wheel prefix="$(arg prefix)" num="2" theta="-${PI/3}"/>
-    <xacro:wheel prefix="$(arg prefix)" num="3" theta="${PI/3}"/>
+    <xacro:wheel parent="$(arg prefix)base_link" suffix="1" theta="${PI}"/>
+    <xacro:wheel parent="$(arg prefix)base_link" suffix="2" theta="-${PI/3}"/>
+    <xacro:wheel parent="$(arg prefix)base_link" suffix="3" theta="${PI/3}"/>
 </robot>

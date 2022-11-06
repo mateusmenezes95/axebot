@@ -14,14 +14,14 @@
             </inertial>
     </xacro:macro>
 
-    <xacro:macro name="wheel" params="prefix num theta">
-        <joint name="${prefix}wheel${num}_shaft_joint" type="fixed">
+    <xacro:macro name="wheel" params="parent suffix theta">
+        <joint name="wheel${suffix}_shaft_joint" type="fixed">
             <origin xyz="${base_radius*cos(theta)} ${base_radius*sin(theta)} ${robot_height}" rpy="0.0 ${PI/2} ${theta+PI}"/>
-            <parent link="${prefix}base_link"/>
-            <child link="${prefix}wheel${num}_shaft_link"/>
+            <parent link="${parent}"/>
+            <child link="wheel${suffix}_shaft_link"/>
         </joint>
 
-        <link name="${prefix}wheel${num}_shaft_link">
+        <link name="wheel${suffix}_shaft_link">
             <visual>
                 <origin xyz="0.0 0.0 -${shaft_length/2}" rpy="0.0 0.0 0.0"/>
                 <geometry>
@@ -40,14 +40,14 @@
             </xacro:inertial_cylinder>
         </link>
 
-        <joint name="${prefix}wheel${num}_joint" type="continuous">
+        <joint name="wheel${suffix}_joint" type="continuous">
             <origin xyz="0.0 0.0 -${shaft_length}" rpy="0.0 0.0 0.0"/>
-            <parent link="${prefix}wheel${num}_shaft_link"/>
-            <child link="${prefix}wheel${num}_link"/>
+            <parent link="wheel${suffix}_shaft_link"/>
+            <child link="wheel${suffix}_link"/>
             <axis xyz="0.0 0.0 1.0"/>
         </joint>
 
-        <link name="${prefix}wheel${num}_link">
+        <link name="wheel${suffix}_link">
             <visual>
                 <origin xyz="0.0 0.0 -${wheel_thickness/2}" rpy="0.0 0.0 0.0"/>
                 <geometry>
