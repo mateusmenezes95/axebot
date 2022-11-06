@@ -16,7 +16,7 @@
 
     <xacro:macro name="wheel" params="parent suffix theta">
         <joint name="wheel${suffix}_shaft_joint" type="fixed">
-            <origin xyz="${base_radius*cos(theta)} ${base_radius*sin(theta)} ${robot_height}" rpy="0.0 ${PI/2} ${theta+PI}"/>
+            <origin xyz="${chassis_radius*cos(theta)} ${chassis_radius*sin(theta)} ${robot_height}" rpy="0.0 ${PI/2} ${theta+PI}"/>
             <parent link="${parent}"/>
             <child link="motor${suffix}_shaft_link"/>
         </joint>
