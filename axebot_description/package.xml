@@ -13,7 +13,7 @@
   <exec_depend>joint_state_publisher_gui</exec_depend>
   <exec_depend>launch_ros</exec_depend>
   <exec_depend>launch</exec_depend>
-  <exec_depend>robot_state_publiser</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>ros2launch</exec_depend>
   <exec_depend>xacro</exec_depend>
 
