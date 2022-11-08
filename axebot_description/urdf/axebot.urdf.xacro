@@ -2,16 +2,17 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="axebot">
     <!-- Constants for wheel mechanical parameters -->
     <xacro:property name="PI" value="3.1415926535897931"/>
-    <xacro:property name="chassis_mass" value="1.551"/>
+    <xacro:property name="chassis_mass" value="1.074"/>
     <xacro:property name="chassis_height" value="0.04"/>
     <xacro:property name="robot_height" value="0.053"/>
-    <xacro:property name="wheel_mass" value="0.268" />
-    <xacro:property name="wheel_radius" value="0.05" />
-    <xacro:property name="motor_shaft_radius" value="0.005" />
-    <xacro:property name="shaft_mass" value="0.01" />
+    <xacro:property name="wheel_mass" value="0.105" />
+    <xacro:property name="wheel_radius" value="0.0508" />
+    <xacro:property name="motor_shaft_radius" value="0.002" />
+    <xacro:property name="shaft_mass" value="0.001" />
 
-    <!-- The sum of the chassis radius, half of wheel thickness, and the motor shaft
-    length must be equal the robot radius L = 0.1 m used in the kinematic model -->
+    <!-- The sum of the chassis radius, half the wheel thickness, and the 
+    motor shaft length must be equal to the robot radius L = 0.1 m used in the
+    kinematic model -->
     <xacro:property name="chassis_radius" value="0.085"/>
     <xacro:property name="wheel_thickness" value="0.025" />
     <xacro:property name="motor_shaft_length" value="0.0025"/>
