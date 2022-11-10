@@ -19,6 +19,8 @@
 
     <xacro:include filename="$(find axebot_description)/urdf/wheel.urdf.xacro"/>
     <xacro:include filename="$(find axebot_description)/urdf/materials.urdf.xacro"/>
+    <xacro:include filename="$(find axebot_description)/urdf/gazebo.urdf.xacro"/>
+    <xacro:include filename="$(find axebot_description)/urdf/ros2_control.urdf.xacro"/>
     
     <link name="base_link"></link>
 

@@ -1,0 +1,31 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="axebot">
+    <gazebo reference="chassis_link">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="wheel1_link">
+        <material>Gazebo/Green</material>
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+    </gazebo>
+
+    <gazebo reference="wheel2_link">
+        <material>Gazebo/Green</material>
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+    </gazebo>
+
+    <gazebo reference="wheel3_link">
+        <material>Gazebo/Green</material>
+        <mu1>0.2</mu1>
+        <mu2>0.2</mu2>
+    </gazebo>
+
+    <gazebo>
+        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+        <robot_param>robot_description</robot_param>
+        <robot_param_node>robot_state_publisher</robot_param_node>
+        <parameters>$(find axebot_description)/config/ros2_controllers.yaml</parameters>
+        </plugin>
+    </gazebo>
+</robot>
