@@ -4,19 +4,19 @@
     </gazebo>
 
     <gazebo reference="wheel1_link">
-        <material>Gazebo/Green</material>
+        <material>Gazebo/Grey</material>
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
     </gazebo>
 
     <gazebo reference="wheel2_link">
-        <material>Gazebo/Green</material>
+        <material>Gazebo/Grey</material>
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
     </gazebo>
 
     <gazebo reference="wheel3_link">
-        <material>Gazebo/Green</material>
+        <material>Gazebo/Grey</material>
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
     </gazebo>
