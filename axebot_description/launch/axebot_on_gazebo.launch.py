@@ -95,7 +95,7 @@ def generate_launch_description():
     omni_base_controller_spawner = Node(
         package="controller_manager",
         executable="spawner.py",
-        arguments=["omni_base_controller"],
+        arguments=["omnidirectional_controller"],
     )
 
     omni_base_controller_event_handler = RegisterEventHandler(
