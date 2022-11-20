@@ -49,7 +49,7 @@
                          iyy="7.6e-8"
                          iyz="0.0"
                          izz="7.6e-8"/>
-            </inertial>            
+            </inertial>
         </link>
     </xacro:macro>
 
@@ -99,7 +99,7 @@
             <collision>
                 <origin xyz="0.0 0.0 -${wheel_thickness/2}" rpy="0.0 0.0 0.0"/>
                 <geometry>
-                    <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
+                    <mesh filename="file://$(find axebot_description)/meshes/rim.stl"/>
                 </geometry>
             </collision>
 
