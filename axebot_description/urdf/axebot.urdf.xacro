@@ -16,8 +16,8 @@
     motor shaft length must be equal to the robot radius L = 0.1 m used in the
     kinematic model -->
     <xacro:property name="chassis_radius" value="0.085"/>
-    <xacro:property name="wheel_thickness" value="0.025" />
-    <xacro:property name="motor_shaft_length" value="0.0025"/>
+    <xacro:property name="wheel_thickness" value="0.01905" />
+    <xacro:property name="motor_shaft_length" value="0.005475"/>
 
     <xacro:include filename="$(find axebot_description)/urdf/wheel.urdf.xacro"/>
     <xacro:include filename="$(find axebot_description)/urdf/materials.urdf.xacro"/>
@@ -27,14 +27,14 @@
     <link name="base_link"></link>
 
     <joint name="base_link_joint" type="fixed">
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 0 ${robot_height}" rpy="0 0 0" />
         <parent link="base_link"/>
         <child link="chassis_link" />
     </joint>
 
     <link name="chassis_link">
         <visual name="">
-            <origin xyz="0.0 0.0 ${robot_height}" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <cylinder radius="${chassis_radius}" length="${chassis_height}"/>
             </geometry>
@@ -42,16 +42,23 @@
         </visual>
 
         <collision>
-            <origin xyz="0.0 0.0 ${robot_height}" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
                 <cylinder radius="${chassis_radius}" length="${chassis_height}"/>
             </geometry>
             <material name="black"/>
         </collision>
 
-        <xacro:inertial_cylinder mass="${chassis_mass}" radius="${chassis_radius}" length="${chassis_height}">
-            <origin xyz="0.0 0.0 ${robot_height}" rpy="0.0 0.0 0.0"/>
-        </xacro:inertial_cylinder>
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="1.634"/>
+            <inertia ixx="0.00316977667"
+                        ixy="0.0"
+                        ixz="0.0"
+                        iyy="0.00316977667"
+                        iyz="0.0"
+                        izz="0.005903752"/>
+        </inertial>
     </link>
     <xacro:if value="$(arg only_one_wheel)">
         <xacro:wheel parent="chassis_link" suffix="1" theta="0"/>

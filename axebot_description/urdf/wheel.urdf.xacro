@@ -17,11 +17,12 @@
     </xacro:macro>
 
     <xacro:macro name="insert_roller" params="parent reflect theta suffix wheel">
-        <joint name="rim_to_roller${wheel}${suffix}joint" type="fixed">
+        <joint name="rim_to_roller${wheel}${suffix}joint" type="continuous">
             <origin xyz="${distance_to_roller_center*cos(theta)} ${distance_to_roller_center*sin(theta)} ${reflect*0.008}" rpy="0.0 0.0 ${theta-PI/2}"/>
             <parent link="${parent}"/>
             <child link="roller${wheel}${suffix}_link"/>
             <axis xyz="1.0 0.0 0.0"/>
+            <dynamics friction="0.01"/>
         </joint>
 
         <link name="roller${wheel}${suffix}_link">
@@ -46,16 +47,22 @@
                 <inertia ixx="5.3e-8"
                          ixy="0.0"
                          ixz="0.0"
-                         iyy="7.6e-8"
+                         iyy="8e-8"
                          iyz="0.0"
-                         izz="7.6e-8"/>
+                         izz="8e-8"/>
             </inertial>
         </link>
+        <gazebo reference="roller${wheel}${suffix}_link">
+            <material>Gazebo/Green</material>
+            <fdir1>0 1 0"</fdir1>
+            <mu1>10</mu1>
+            <mu2>10</mu2>
+        </gazebo>
     </xacro:macro>
 
     <xacro:macro name="wheel" params="parent suffix theta">
         <joint name="wheel${suffix}_shaft_joint" type="fixed">
-            <origin xyz="${chassis_radius*cos(theta)} ${chassis_radius*sin(theta)} ${robot_height}" rpy="0.0 ${PI/2} ${theta+PI}"/>
+            <origin xyz="${chassis_radius*cos(theta)} ${chassis_radius*sin(theta)} 0.0" rpy="0.0 ${PI/2} ${theta+PI}"/>
             <parent link="${parent}"/>
             <child link="motor${suffix}_shaft_link"/>
         </joint>
@@ -66,7 +73,7 @@
                 <geometry>
                     <cylinder radius="${motor_shaft_radius}" length="${motor_shaft_length}"/>
                 </geometry>
-                <material name="grey"/>
+                <material name="red"/>
             </visual>
 
             <collision>
@@ -81,7 +88,7 @@
         </link>
 
         <joint name="wheel${suffix}_joint" type="continuous">
-            <origin xyz="0.0 0.0 -${motor_shaft_length}" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 -${motor_shaft_length+wheel_thickness/2}" rpy="0.0 0.0 0.0"/>
             <parent link="motor${suffix}_shaft_link"/>
             <child link="wheel${suffix}_link"/>
             <axis xyz="0.0 0.0 1.0"/>
@@ -97,21 +104,21 @@
             </visual>
 
             <collision>
-                <origin xyz="0.0 0.0 -${wheel_thickness/2}" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <geometry>
-                    <mesh filename="file://$(find axebot_description)/meshes/rim.stl"/>
+                    <mesh filename="file://$(find axebot_description)/meshes/wheel-collision.dae"/>
                 </geometry>
             </collision>
 
             <inertial>
                 <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-                <mass value="0.0064"/>
-                <inertia ixx="0.000046803"
+                <mass value="0.113"/>
+                <inertia ixx="0.000089064"
                          ixy="0.0"
                          ixz="0.0"
-                         iyy="0.000046833"
+                         iyy="0.000089064"
                          iyz="0.0"
-                         izz="0.000089214"/>
+                         izz="0.000173339"/>
             </inertial>
         </link>
 
