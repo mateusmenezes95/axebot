@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="axebot">
+    <xacro:arg name="only_one_wheel" default="false"/>
+
     <!-- Constants for wheel mechanical parameters -->
     <xacro:property name="PI" value="3.1415926535897931"/>
     <xacro:property name="chassis_mass" value="1.074"/>
@@ -51,8 +53,12 @@
             <origin xyz="0.0 0.0 ${robot_height}" rpy="0.0 0.0 0.0"/>
         </xacro:inertial_cylinder>
     </link>
-
-    <xacro:wheel parent="chassis_link" suffix="1" theta="${PI}"/>
-    <xacro:wheel parent="chassis_link" suffix="2" theta="-${PI/3}"/>
-    <xacro:wheel parent="chassis_link" suffix="3" theta="${PI/3}"/>
+    <xacro:if value="$(arg only_one_wheel)">
+        <xacro:wheel parent="chassis_link" suffix="1" theta="0"/>
+    </xacro:if>
+    <xacro:unless value="$(arg only_one_wheel)">
+        <xacro:wheel parent="chassis_link" suffix="1" theta="${PI}"/>
+        <xacro:wheel parent="chassis_link" suffix="2" theta="-${PI/3}"/>
+        <xacro:wheel parent="chassis_link" suffix="3" theta="${PI/3}"/>
+    </xacro:unless>
 </robot>

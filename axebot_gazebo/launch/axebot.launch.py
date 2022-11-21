@@ -52,7 +52,7 @@ def generate_launch_description():
     rviz_config = os.path.join(
       get_package_share_directory(pkg_name),
       'config',
-      'config.rviz'
+      'axebot.rviz'
     )
 
     rviz_node = Node(
