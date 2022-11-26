@@ -22,7 +22,7 @@
             <parent link="${parent}"/>
             <child link="roller${wheel}${suffix}_link"/>
             <axis xyz="1.0 0.0 0.0"/>
-            <dynamics friction="0.01"/>
+            <dynamics friction="0.1"/>
         </joint>
 
         <link name="roller${wheel}${suffix}_link">
@@ -54,9 +54,10 @@
         </link>
         <gazebo reference="roller${wheel}${suffix}_link">
             <material>Gazebo/Green</material>
-            <fdir1>0 1 0"</fdir1>
-            <mu1>10</mu1>
-            <mu2>10</mu2>
+            <fdir1>1 0 0"</fdir1>
+            <mu1>100</mu1>
+            <mu2>100</mu2>
+            <minDepth>0.001</minDepth>
         </gazebo>
     </xacro:macro>
 
