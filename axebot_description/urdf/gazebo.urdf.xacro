@@ -32,7 +32,7 @@
         </plugin>
         <plugin filename="libgazebo_ros_p3d.so" name="gazebo_ros_p3d" >
             <ros>
-                <namespace>ground_truth_odom</namespace>
+                <namespace>gazebo_ground_truth</namespace>
             </ros>
             <frame_name>world</frame_name>
             <body_name>base_link</body_name>
