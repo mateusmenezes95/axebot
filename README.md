@@ -51,6 +51,7 @@ Install the binary dependencies by running the following command in the root of 
 cd ~/ros_ws
 rosdep init
 rosdep update
+sudo apt update
 rosdep install --from-paths src/axebot --ignore-src -r -y --rosdistro foxy
 ```
 
@@ -59,6 +60,7 @@ If all dependencies are already installed, you should see the message "All requi
 Now, install the omnidirectional controller packager running:
 
 ```
+cd ~/ros_ws/src
 vcs import < axebot/axebot.foxy.repos
 ```
 
