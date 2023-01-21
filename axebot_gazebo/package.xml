@@ -10,7 +10,6 @@
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <exec_depend>axebot_description</exec_depend>
-  <exec_depend>gazebo_ros_plugins</exec_depend>
   <exec_depend>launch_ros</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>ros2_control</exec_depend>
