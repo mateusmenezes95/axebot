@@ -30,10 +30,9 @@ The Axebot is an omnidirectional robot with three wheels that was initially deve
 
 ## Installing
 
-### Dependencies
+### Non ROS Dependencies
 
-- [Omnidirectional Controllers](https://github.com/mateusmenezes95/omnidirectional_controllers)
-- [Git LFS](https://git-lfs.com/)
+- [vcstool](https://github.com/dirk-thomas/vcstool): Refer to its repository for instructions on how to install.
 
 ### Installing from source
 
@@ -56,6 +55,12 @@ rosdep install --from-paths src/axebot --ignore-src -r -y --rosdistro foxy
 ```
 
 If all dependencies are already installed, you should see the message "All required rosdeps installed successfully."
+
+Now, install the omnidirectional controller packager running:
+
+```
+vcs import < axebot/axebot.foxy.repos
+```
 
 ## Building
 
