@@ -2,4 +2,4 @@ repositories:
   omnidirectional_controllers:
     type: git
     url: https://github.com/mateusmenezes95/omnidirectional_controllers.git
-    version: foxy-first-version
+    version: foxy
