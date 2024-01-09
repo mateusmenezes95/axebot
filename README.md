@@ -4,6 +4,12 @@
 
 The Axebot is an omnidirectional robot with three wheels that was initially developed by students at Universidade Federal da Bahia for robot soccer competitions. However, it was later used by the LaR UFBA for academic research in mobile robotics and control. This repository provides a simulation version of the robot to make it easier for researchers to validate algorithms.
 
+## Build status
+
+ROS2 Distro | Branch | Build status |
+:---------: | :----: | :----------: |
+**Humble** | [`humble`](https://github.com/mateusmenezes95/axebot/tree/humble) | [![Humble Source Build](https://github.com/mateusmenezes95/axebot/actions/workflows/humble-source-build.yaml/badge.svg)](https://github.com/mateusmenezes95/axebot/actions/workflows/humble-source-build.yaml)
+
 ## Table of Contents
 
 - [Axebot Simulation](#axebot-simulation)
