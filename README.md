@@ -4,6 +4,12 @@
 
 The Axebot is an omnidirectional robot with three wheels that was initially developed by students at Universidade Federal da Bahia for robot soccer competitions. However, it was later used by the LaR UFBA for academic research in mobile robotics and control. This repository provides a simulation version of the robot to make it easier for researchers to validate algorithms.
 
+## Build status
+
+ROS2 Distro | Branch | Build status |
+:---------: | :----: | :----------: |
+**Humble** | [`humble`](https://github.com/mateusmenezes95/axebot/tree/humble) | [![Humble Source Build](https://github.com/mateusmenezes95/axebot/actions/workflows/humble-source-build.yaml/badge.svg)](https://github.com/mateusmenezes95/axebot/actions/workflows/humble-source-build.yaml)
+
 ## Table of Contents
 
 - [Axebot Simulation](#axebot-simulation)
@@ -22,9 +28,9 @@ The Axebot is an omnidirectional robot with three wheels that was initially deve
 
 ## Installation Premises
 
-1. This repository has been tested on [ROS2 Foxy] and with [Classic Gazebo 11];
+1. This repository has been tested on [ROS2 Version] with [Classic Gazebo 11];
 
-2. These instructions assume that you have already installed ROS2 Foxy Fitzroy on your machine. If not, please follow the recommended [recommended ubuntu installation tutorial];
+2. These instructions assume that you have already installed ROS2 Humble Hawskbill on your machine. If not, please follow the recommended [recommended ubuntu installation tutorial];
 
 3. Before installing the package, you will need to have an ament workspace set up. If you don't have one, follow the instructions in the [Creating a workspace tutorial]. Once you have created the workspace, clone this repository in the source folder of your workspace.
 
@@ -52,7 +58,7 @@ cd ~/ros_ws
 rosdep init
 rosdep update
 sudo apt update
-rosdep install --from-paths src/axebot --ignore-src -r -y --rosdistro foxy
+rosdep install --from-paths src/axebot --ignore-src -r -y --rosdistro humble
 ```
 
 If all dependencies are already installed, you should see the message "All required rosdeps installed successfully."
@@ -61,7 +67,7 @@ Now, install the omnidirectional controller packager running:
 
 ```
 cd ~/ros_ws/src
-vcs import < axebot/axebot.foxy.repos
+vcs import < axebot/axebot.humble.repos
 ```
 
 ## Building
@@ -78,7 +84,7 @@ colcon build --symlink-install --event-handlers console_direct+
 After building the package, open a new terminal and navigate to your workspace. Then, source the overlay by running the following command:
 
 ```
-source /opt/ros/foxy/setup.bash
+source /opt/ros/humble/setup.bash
 cd ~/ros_ws
 . install/local_setup.bash
 ```
@@ -166,11 +172,13 @@ For more information about nodes, topics, services, and other elements of the Ax
 
 ## Contributing
 
-To contribute to this package, you can either [open an issue](https://github.com/mateusmenezes95/axebot/issues) describing the desired subject or develop the feature yourself and  [submit a pull request](https://github.com/mateusmenezes95/axebot/pulls) to the main branch (in this case, foxy).
+To contribute to this package, you can either [open an issue](https://github.com/mateusmenezes95/axebot/issues) describing the desired subject or develop the feature yourself and  [submit a pull request](https://github.com/mateusmenezes95/axebot/pulls) to the main branch (in this case, humble).
 
 If you choose to develop the feature yourself, please adhere to the [ROS 2 Code style and language] guidelines to improve code readability and maintainability.
 
 ## Developed Researches
+
+M. S. Meneses, B. S. S. Pereira and T. L. M. Santos, "Robust reference tracking control subject to time-varying delay with future reference anticipation," 2023 Latin American Robotics Symposium (LARS), 2023 Brazilian Symposium on Robotics (SBR), and 2023 Workshop on Robotics in Education (WRE), Salvador, Brazil, 2023, pp. 367-372, doi: 10.1109/LARS/SBR/WRE59448.2023.10333024. [[link]](https://ieeexplore.ieee.org/document/10333024)
 
 J. Santos, A. Conceição, T. Santos, and H. Ara ujo, “Remote control of an omnidirectional mobile robot with time-varying delay and noise attenuation,” *Mechatronics*, vol. 52, pp. 7–21, 2018, ISSN: 0957-4158. DOI: 10.1016/j.mechatronics.2018.04.003. [Online](https://www.sciencedirect.com/science/article/abs/pii/S0957415818300606).
 
@@ -180,11 +188,11 @@ J. C. L. Barreto S., A. G. S. Conceição, C. E. T. Dórea, L. Martinez and E. R
 
 A. G. S. Conceicao, M. D. Correia, and L. Martinez, “Modeling and friction estimation for wheeled omnidirectional mobile robots,” *Robotica*, vol. 34, no. 9, pp. 2140–2150, 2016. [[link]](https://www.cambridge.org/core/journals/robotica/article/abs/modeling-and-friction-estimation-for-wheeled-omnidirectional-mobile-robots/85796F5CF60310022D35CB792EF80254)
 
-[Creating a workspace tutorial]: https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html#creating-a-workspace
-[recommended ubuntu installation tutorial]: https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Debians.html
+[Creating a workspace tutorial]: https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html
+[recommended ubuntu installation tutorial]: https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html
 [Source the overlay]: https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html#source-the-overlay
-[ROS 2 Code style and language]: https://docs.ros.org/en/foxy/The-ROS2-Project/Contributing/Code-Style-Language-Versions.html#code-style-and-language-versions
-[ROS2 Foxy]: https://docs.ros.org/en/foxy/index.html
+[ROS 2 Code style and language]: https://docs.ros.org/en/humble/The-ROS2-Project/Contributing/Code-Style-Language-Versions.html#code-style-and-language-versions
+[ROS2 Version]: https://docs.ros.org/en/humble/index.html
 [Classic Gazebo 11]: https://classic.gazebosim.org/
 [ChatGPT]: https://openai.com/blog/chatgpt/
-[CLI Tools Tutorial]: https://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools.html#
+[CLI Tools Tutorial]: https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools.html#

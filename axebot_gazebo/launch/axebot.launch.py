@@ -32,9 +32,10 @@ from launch.substitutions import LaunchConfiguration
 
 import xacro
 
+
 def generate_launch_description():
     pkg_name = 'axebot_description'
-    
+
     launch_rviz = LaunchConfiguration('launch_rviz')
 
     launch_rviz_arg = DeclareLaunchArgument(
@@ -74,14 +75,14 @@ def generate_launch_description():
     )
 
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
-                    arguments=['-topic', 'robot_description',
-                                '-entity', 'axebot'],
-                    output='screen'
-    )
+                        arguments=['-topic', 'robot_description',
+                                   '-entity', 'axebot'],
+                        output='screen'
+                        )
 
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
-        executable="spawner.py",
+        executable="spawner",
         arguments=["joint_state_broadcaster"],
     )
 
@@ -94,13 +95,13 @@ def generate_launch_description():
 
     omni_base_controller_spawner = Node(
         package="controller_manager",
-        executable="spawner.py",
+        executable="spawner",
         arguments=["omnidirectional_controller"],
     )
 
     omni_base_controller_event_handler = RegisterEventHandler(
         event_handler=OnProcessExit(
-            target_action=spawn_entity,
+            target_action=joint_state_broadcaster_spawner,
             on_exit=[omni_base_controller_spawner]
         )
     )
@@ -114,7 +115,8 @@ def generate_launch_description():
 
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('gazebo_ros'), 'launch'), '/gazebo.launch.py']),
+            get_package_share_directory('gazebo_ros'), 'launch'),
+                                       '/gazebo.launch.py']),
     )
 
     return LaunchDescription([
